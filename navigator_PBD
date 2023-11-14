@@ -1,0 +1,16 @@
+case Button of
+    sbFilter:food_Filter.Execute;
+    sbFind:food_Find.Execute;
+    sbExport:
+      begin
+        if Application.MessageBox('Apakah akan ekspor data?', 'Konfirmasi',
+          MB_OKCANCEL + MB_ICONQUESTION) = IDOK then
+        begin
+          food_Export.Select;
+        end;
+      end;
+    sbPrint:begin
+    frxReport1.LoadFromFile('food.fr3');
+    frxReport1.ShowReport;
+    end;
+    end;
