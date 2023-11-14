@@ -1,0 +1,4 @@
+procedure TF_entitas.FormShow(Sender: TObject);
+begin
+ZQuery1.Active:=True;
+end;
