@@ -1,0 +1,14 @@
+procedure TF_menu.Btn_loginClick(Sender: TObject);
+begin
+F_login.ShowModal;
+
+
+end;
+
+procedure TF_menu.Btn_entitasClick(Sender: TObject);
+begin
+  if f_login.conn_login.Connected then
+  f_entitas.ShowModal
+  else
+  ShowMessage('belum login');
+end;
