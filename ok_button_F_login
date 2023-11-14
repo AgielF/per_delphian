@@ -1,0 +1,16 @@
+procedure TF_login.Button1Click(Sender: TObject);
+begin
+conn_login.Disconnect;
+  conn_login.HostName:=Edit1.Text;
+  conn_login.Port:=StrToInt(Edit2.Text);
+  conn_login.User:=Edit3.Text;
+  conn_login.Password:=Edit4.Text;
+  try
+    conn_login.Connect;
+  except
+    ShowMessage('Koneksi Gagal!');
+  end;
+if conn_login.Connected then
+  Close;
+end;
+end.
