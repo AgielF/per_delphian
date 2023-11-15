@@ -1,0 +1,54 @@
+var
+  Form1: TForm1;
+  i,z: Integer;
+  b, c, a: string;
+
+implementation
+
+uses DM, MsgBox1, MsgBox2;
+
+{$R *.dfm}
+
+procedure TForm1.btn_LoginClick(Sender: TObject);
+begin
+  DataModule2.zq_login.SQL.Text := 'select * from login';
+  DataModule2.zq_login.Active := True;
+
+  for i := 1 to DataModule2.zq_login.RecordCount do begin
+    a := DataModule2.zq_login['level'];
+    b := DataModule2.zq_login['user'];
+    c := DataModule2.zq_login['password'];
+    if ((ed_Uname.Text=b) and (ed_Pwd.Text=c) and (a = 'admin')) then begin
+      z:=1;
+    end
+    else if ((ed_Uname.Text=b) and (ed_Pwd.Text=c) and (a = 'user')) then begin
+      z:=2;
+    end
+    else
+    DataModule2.zq_login.Next;
+  end;
+  if z = 1 then begin
+    MessageDlg('Selamat datang Admin', mtInformation, [mbOK], 0);
+    Form1.Hide;
+    Form3.Show;
+  end;
+  if z = 2 then begin
+    MessageDlg('Selamat datang User', mtInformation, [mbOK], 0);
+    Form1.Hide;
+    Form4.Show;
+  end;
+end;
+
+procedure TForm1.cb_ShowPwdClick(Sender: TObject);
+begin
+  if cb_ShowPwd.Checked then
+  begin
+    ed_Pwd.PasswordChar:=#0;
+  end
+  else begin
+    ed_Pwd.PasswordChar:='*';
+  end;
+end;
+
+
+end.
